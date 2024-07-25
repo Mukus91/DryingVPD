@@ -1,0 +1,135 @@
+body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #444;
+    border-radius: 10px;
+    background-color: #2e2e2e;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input[type="number"] {
+    width: 80px;
+    padding: 5px;
+    margin: 0 auto;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #444;
+    color: #fff;
+}
+
+.temp-toggle {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.temp-toggle input[type="radio"] {
+    display: none;
+}
+
+.temp-toggle label {
+    margin: 0 10px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #444;
+    color: #fff;
+}
+
+.temp-toggle input[type="radio"]:checked + label {
+    background-color: #666;
+}
+
+select {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #444;
+    color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    margin-top: 20px;
+}
+
+#result p {
+    margin: 5px 0;
+}
+
+.warning-message {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.green {
+    color: #00ff00;
+}
+
+.yellow {
+    color: #ffff00;
+}
+
+.red {
+    color: #ff0000;
+}
+
+.references {
+    margin-top: 40px;
+}
+
+.references h2 {
+    font-size: 20px;
+}
+
+.references ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.references ol li a {
+    color: #1e90ff;
+}
+
+.references ol li a:hover {
+    text-decoration: underline;
+}
