@@ -18,13 +18,36 @@ function populateVPDOptions() {
     maxVPDSelect.value = "1.1";
 }
 
+function estimateDryingDays(VPD) {
+    const vpdValues = [0.4, 0.6, 0.8, 1.2, 1.4, 2.2];
+    const dryingDays = [19, 12, 10, 6, 5, 3];
+
+    // If VPD is outside the range, return min/max days
+    if (VPD <= vpdValues[0]) {
+        return dryingDays[0];
+    } else if (VPD >= vpdValues[vpdValues.length - 1]) {
+        return dryingDays[dryingDays.length - 1];
+    }
+
+    // Interpolate between the known VPD values
+    for (let i = 0; i < vpdValues.length - 1; i++) {
+        if (VPD >= vpdValues[i] && VPD <= vpdValues[i + 1]) {
+            const ratio = (VPD - vpdValues[i]) / (vpdValues[i + 1] - vpdValues[i]);
+            return dryingDays[i] + ratio * (dryingDays[i + 1] - dryingDays[i]);
+        }
+    }
+
+    // Default return if no match found
+    return "Unknown";
+}
+
 function calculateVPD() {
     const temperature = parseFloat(document.getElementById('temperature').value);
     const humidity = parseFloat(document.getElementById('humidity').value);
     const tempUnit = document.querySelector('input[name="temp-unit"]:checked').value;
     const minVPD = parseFloat(document.getElementById('min-vpd').value);
     const maxVPD = parseFloat(document.getElementById('max-vpd').value);
-    
+
     if (isNaN(temperature) || isNaN(humidity)) {
         alert("Please enter valid values for temperature and humidity.");
         return;
@@ -39,7 +62,7 @@ function calculateVPD() {
     const VPD = (1 - (humidity / 100)) * SVP;
 
     document.getElementById('vpd-value').textContent = VPD.toFixed(2);
-    
+
     let statusText = "";
     let statusClass = "";
 
@@ -66,6 +89,11 @@ function calculateVPD() {
     } else {
         warningElement.textContent = "";
     }
+
+    // Calculate and display estimated drying time
+    const dryingDays = estimateDryingDays(VPD);
+    const dryingTimeElement = document.getElementById('drying-time');
+    dryingTimeElement.textContent = `Estimated drying time: ${dryingDays.toFixed(1)} days`;
 }
 
 // Call the populateVPDOptions function on page load
